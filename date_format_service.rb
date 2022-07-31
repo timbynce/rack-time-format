@@ -9,8 +9,6 @@ class DateFormatService
     'second' => '%S'
   }.freeze
 
-  attr_reader :resp_body, :resp_status
-
   def initialize(formats)
     format_params(formats)
   end
@@ -26,16 +24,6 @@ class DateFormatService
 
   def invalid_formats
     "Unknown time format #{@invalid}"
-  end
-
-  def make_response
-    if valid?
-      @resp_status = 200
-      @resp_body = time_with_format
-    else
-      @resp_status = 400
-      @resp_body = invalid_formats
-    end
   end
 
   private
